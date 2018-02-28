@@ -14,7 +14,11 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 
 from .installed_apps import *
+
+
+
 from .constants import *
+
 from .database import *
 
 
@@ -24,8 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'p!0cl)r7kolqe=q59in#^&(=rnv9bat##*9me@(#m3j=t$w_^!'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -63,6 +66,22 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'lighthousemobile.wsgi.application'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+        },
+    },
+}
 
 
 
