@@ -72,8 +72,8 @@ class AccountViewSet(ExModelViewSet):
     def specific_job(self, request):
         try:
             headers = {'Authorization': 'Bearer jdwuekh380tc34fq'}
-            jnid=request.query_params.get('jnid',None)
-            url = 'https://app.jobnimbus.com/api1/jobs/'+str(jnid)
+            jnid = request.query_params.get('jnid', None)
+            url = 'https://app.jobnimbus.com/api1/jobs/' + str(jnid)
             # result = requests.get(url=url,
             #                       params=urllib.parse.quote(str(params)), headers=headers)
             result = requests.get(url=url, headers=headers)
@@ -89,7 +89,9 @@ class AccountViewSet(ExModelViewSet):
         except Exception as e:
             pass
 
-
+@permission_classes((AllowAny,))
 class AccessApiKeyViewSet(ExModelViewSet):
     queryset = AccessApiKey.objects.all()
     serializer_class = AccessApiKeySerializer
+
+
