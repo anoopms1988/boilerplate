@@ -1,0 +1,13 @@
+*.pyc
+# Node modules
+web/node_modules/
+web/stats.json
+html/node_modules/
+web/dist/
+web/npm-debug.log
+web/debug.log
+.project
+.pydevproject
+.idea
+nbproject
+assets/*

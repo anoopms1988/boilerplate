@@ -36,6 +36,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 MIDDLEWARE = (
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -82,6 +83,17 @@ LOGGING = {
         },
     },
 }
+
+ALLOWED_HOSTS = ['*']
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = (
+    'localhost:4200',
+)
+CORS_ORIGIN_REGEX_WHITELIST = (
+    'localhost:4200',
+)
 
 
 

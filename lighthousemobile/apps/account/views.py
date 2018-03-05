@@ -53,34 +53,7 @@ class AccountViewSet(ExModelViewSet):
             logger.error(e.message)
             raise err.ValidationError(*(e.message, 400))
 
-    @list_route(methods=['GET'])
-    def jobs_list(self, request):
-        try:
-            headers = {'Authorization': 'Bearer jdwuekh380tc34fq'}
-            filter = {"must": [{"term": {"is_completed": 'true'}}]}
-            params = {"filter": filter}
-            url = 'https://app.jobnimbus.com/api1/jobs'
-            result = requests.get(url=url,
-                                  params=urllib.parse.quote(str(params)), headers=headers)
-            # result = requests.get(url=url, headers=headers)
-            return Response(json.loads(result.text))
-        except Exception as e:
-            logger.error(e.message)
-            raise err.ValidationError(*(e.message, 400))
 
-    @list_route(methods=['GET'])
-    def specific_job(self, request):
-        try:
-            headers = {'Authorization': 'Bearer jdwuekh380tc34fq'}
-            jnid = request.query_params.get('jnid', None)
-            url = 'https://app.jobnimbus.com/api1/jobs/' + str(jnid)
-            # result = requests.get(url=url,
-            #                       params=urllib.parse.quote(str(params)), headers=headers)
-            result = requests.get(url=url, headers=headers)
-            return Response(json.loads(result.text))
-        except Exception as e:
-            logger.error(e.message)
-            raise err.ValidationError(*(e.message, 400))
 
     def get_queryset(self):
         try:

@@ -14,27 +14,27 @@ class JobFormSerializer(ExModelSerializer):
         exclude = ()
 
 
-# class JobFormCreateSerializer(ExModelSerializer):
-#     class Meta:
-#         model = JobForm
-#         exclude = ()
-#
-#     def validate(self, attrs):
-#         return attrs
-#
-#     def create(self, validated_data):
-#         try:
-#             jobform_serializer = JobFormSerializer(data=validated_data)
-#             if jobform_serializer.is_valid(raise_exception=True):
-#                 jobform = jobform_serializer.save()
-#             return jobform
-#         except Exception as e:
-#             logger.error(e.message)
-#             raise err.ValidationError(*(e.message, 400))
-#
-#     def update(self, instance, validated_data):
-#         try:
-#             pass
-#         except Exception as e:
-#             logger.error(e.message)
-#             raise err.ValidationError(*(e.message, 400))
+class JobFormCreateSerializer(ExModelSerializer):
+    class Meta:
+        model = JobForm
+        exclude = ()
+
+    def validate(self, attrs):
+        return attrs
+
+    def create(self, validated_data):
+        try:
+            jobform_serializer = JobFormSerializer(data=validated_data)
+            if jobform_serializer.is_valid(raise_exception=True):
+                jobform = jobform_serializer.save()
+            return jobform
+        except Exception as e:
+            logger.error(e.message)
+            raise err.ValidationError(*(e.message, 400))
+
+    def update(self, instance, validated_data):
+        try:
+            pass
+        except Exception as e:
+            logger.error(e.message)
+            raise err.ValidationError(*(e.message, 400))

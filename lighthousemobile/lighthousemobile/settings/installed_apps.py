@@ -15,6 +15,7 @@ THIRD_PARTY_APPS = (
     'rest_framework',
     'django_extensions',
     'rest_framework_swagger',
+    'corsheaders',
 )
 
 LOCAL_APPS = (
