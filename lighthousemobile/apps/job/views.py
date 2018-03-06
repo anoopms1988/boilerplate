@@ -29,15 +29,13 @@ class JobFormViewSet(ExModelViewSet):
                 raise err.ValidationError(*("No admin api key exist", 400))
             bearer_token = 'Bearer' + ' ' + admin_api_key
             headers = {'Authorization': bearer_token}
-            filter = {"must": [{"term": {"sales_rep_name": "sachin"}}]}
-            params = {"filter": filter}
+            #filter = {"must": [{"term": {"sales_rep_name": "anila vasudevan"}}]}
+            filter={}
             start = int(request.query_params.get('start', 1)) * 10 - 10
-            url = 'https://app.jobnimbus.com/api1/jobs?size=10&from=' + str(start) 
-            # url = 'https://app.jobnimbus.com/api1/jobs?size=10&from=' + str(
-            #     start) + "&filter=" + '%7B%22must%22%3A%5B%7B%22term%22%3A%7B%22sales_rep_name%22%3A%22sachin%22%7D%7D%5D%7D'
+            url = 'https://app.jobnimbus.com/api1/jobs?size=10&from=' + str(start) + "&filter=" +\
+                  urllib.parse.quote(
+                    str(filter)).replace('%27', '%22')
             result = requests.get(url=url, headers=headers)
-            # result = requests.get(url=url, params=urllib.parse.quote(
-            #         str(params)), headers=headers)
             return Response(json.loads(result.text))
         except Exception as e:
             logger.error(e.message)
