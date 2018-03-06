@@ -1,5 +1,6 @@
 *.pyc
 # Node modules
+lighthousemobile/.idea
 web/node_modules/
 web/stats.json
 html/node_modules/
