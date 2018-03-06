@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
+body,
+html {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+.full-height {
+  height: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/**
+Login
+ */
+
+.login-container {
+  height: 100%;
+  width: 100%;
+  float: left;
+  position: absolute;
+
+  z-index: 9;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d6cdbe+1,f4e9d7+47,9184af+80,4869a6+100;jijo */
+  background: #d6cdbe; /* Old browsers */
+  /*background: -moz-linear-gradient(top, #d6cdbe 1%, #f4e9d7 47%, #9184af 80%, #4869a6 100%); !* FF3.6-15 *!*/
+  /*background: -webkit-linear-gradient(top, #d6cdbe 1%, #f4e9d7 47%, #9184af 80%, #4869a6 100%); !* Chrome10-25,Safari5.1-6 *!*/
+  /*background: linear-gradient(to bottom, #d6cdbe 1%, #f4e9d7 47%, #9184af 80%, #4869a6 100%); !* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ *!*/
+  /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d6cdbe', endColorstr='#4869a6', GradientType=0); !* IE6-9 *!*/
+}
+
+.login-form-wrap {
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  /*border-left: solid 1px #ea9b62;*/
+  padding: 10px 30px;
+  max-width: 360px;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  background-color: transparent !important;
+}
+
+.login-form-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /*border-left: solid 1px #ea9b62;*/
+  height: 100%;
+  /*margin-top: 50px;*/
+  background-color: rgba(255, 255, 255, 0.47)
+}
+
+.login-form label {
+  float: left;
+  width: 100%;
+  text-align: left;
+  /*padding-left: 10px;*/
+  color: #ff0062;
+  font-size: 14px;
+  margin-top: 40px;
+  font-weight: normal;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+
+  border: solid 1px #f3e9d3;
+  border-radius: 2px;
+  background-color: #fff;
+  width: 100%;
+  height: 35px;
+  padding-left: 10px;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+
+  -webkit-box-shadow: 0 0 1px 1000px white inset;
+
+}
+
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus {
+  outline: none;
+}
+
+.btn-login {
+  background-color: #ff0062;
+  border: solid 1px #ff0062;
+  color: #fff;
+  width: 100%;
+  font-size: 14px;
+  padding: 5px 20px;
+  margin-top: 25px;
+  border-radius: 2px;
+  outline: 0;
+}
+
+.navbar-right {
+  height: 60px;
+  margin-right: 15px;
+}
+
+.navbar-right .name {
+  float: left;
+  width: 100%;
+  font-size: 1.2em;
+  margin-top: 5px;
+  white-space: nowrap
+}
+
+.navbar-right .desig {
+  float: left;
+  width: 100%;
+  font-size: 14px;
+  margin-top: 0px;
+  color: #ff2a63;
+}
+
+.header-drop {
+  background-color: transparent;
+  border: none;
+}
+
+.header-drop .caret {
+  color: #fff;
+  margin-top: 22px;
+  border-top-width: 8px;
+  border-left-width: 7px;
+  border-right-width: 7px;
+}
+
+.header-drop:hover {
+  background: transparent;
+}
+
+.navbar-right .btn-default.active,
+.navbar-right .btn-default:active,
+.navbar-right .open > .dropdown-toggle.btn-default {
+  background-color: transparent;
+  outline: none;
+}
