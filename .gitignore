@@ -12,3 +12,5 @@ web/debug.log
 .idea
 nbproject
 assets/*
+lighthousemobile/web/node_modules/
+lighthousemobile/web/.idea/
