@@ -6,3 +6,6 @@ nbproject
 assets/*
 lighthousemobile/web/node_modules/
 lighthousemobile/web/.idea/
+lighthousemobile/solar/
+lighthousemobile/web/package-lock.json
+lighthousemobile/web/.vscode/
