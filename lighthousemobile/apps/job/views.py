@@ -12,6 +12,7 @@ from core import errors as err
 from .models import JobForm
 from .serializers import JobFormSerializer
 from apps.account.models import AccessApiKey
+from .utils import generate_wkhtml_response
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -29,12 +30,12 @@ class JobFormViewSet(ExModelViewSet):
                 raise err.ValidationError(*("No admin api key exist", 400))
             bearer_token = 'Bearer' + ' ' + admin_api_key
             headers = {'Authorization': bearer_token}
-            #filter = {"must": [{"term": {"sales_rep_name": "anila vasudevan"}}]}
-            filter={}
+            # filter = {"must": [{"term": {"sales_rep_name": "anila vasudevan"}}]}
+            filter = {}
             start = int(request.query_params.get('start', 1)) * 10 - 10
-            url = 'https://app.jobnimbus.com/api1/jobs?size=10&from=' + str(start) + "&filter=" +\
+            url = 'https://app.jobnimbus.com/api1/jobs?size=10&from=' + str(start) + "&filter=" + \
                   urllib.parse.quote(
-                    str(filter)).replace('%27', '%22')
+                          str(filter)).replace('%27', '%22')
             result = requests.get(url=url, headers=headers)
             return Response(json.loads(result.text))
         except Exception as e:
@@ -68,6 +69,36 @@ class JobFormViewSet(ExModelViewSet):
             job_forms = JobForm.objects.filter(jnid=jnid).all()
             serialized = JobFormSerializer(job_forms, many=True).data
             return Response(serialized)
+        except Exception as e:
+            logger.error(e.message)
+            raise err.ValidationError(*(e.message, 400))
+
+    @list_route(methods=['POST'])
+    def pdf_generate(self, request):
+        try:
+            import base64
+            data = request.data.get('form_data',None)
+            job_id = request.data.get('job_id', None)
+            response = generate_wkhtml_response(data, 'form.html')
+            encoded_data = base64.encodebytes(response.rendered_content)
+            admin_api_key = AccessApiKey.objects.filter(type='admin').first().key
+            if not admin_api_key:
+                raise err.ValidationError(*("No admin api key exist", 400))
+            bearer_token = 'Bearer' + ' ' + admin_api_key
+            headers = {'Authorization': bearer_token}
+            url = 'https://app.jobnimbus.com/api1/files'
+            post_data = {
+                "data": encoded_data,
+                "related": [
+                    job_id
+                ],
+                "type": 1,
+                "subtype": "contact",
+                "filename": "form",
+                "description": "The description of my file."
+            }
+            result = requests.post(url=url, headers=headers, data=post_data)
+            return Response({"status": True, "msg": "File successfully attached"})
         except Exception as e:
             logger.error(e.message)
             raise err.ValidationError(*(e.message, 400))
