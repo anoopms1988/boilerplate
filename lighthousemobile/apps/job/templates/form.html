@@ -5,10 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-        {% for o in data %}
-        {% if o.type == 'text_field' %}
-         <input type="text" name="{{o.name}}" value="{{o.value}}">
-        {% endif %}
-        {% endfor %}
+{% for o in data %}
+{% if o.type == 'text_field' %}
+<label>{{o.label}}</label>
+<input type="text" name="{{o.name}}" value="{{o.value}}">
+{% endif %}
+<br>
+{% if o.type == 'text_area' %}
+<label>{{o.label}}</label>
+<textarea name="{{o.name}}" value="{{o.value}}"></textarea>
+{% endif %}
+
+{% endfor %}
 </body>
 </html>

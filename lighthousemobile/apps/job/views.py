@@ -78,6 +78,8 @@ class JobFormViewSet(ExModelViewSet):
         try:
             import base64
             data = request.data.get('form_data',None)
+            form_description=request.data.get('form_description',None)
+            form_name=request.data.get('form_name',None)
             job_id = request.data.get('job_id', None)
             response = generate_wkhtml_response(data, 'form.html')
             encoded_data = base64.encodebytes(response.rendered_content)
@@ -94,8 +96,8 @@ class JobFormViewSet(ExModelViewSet):
                 ],
                 "type": 1,
                 "subtype": "contact",
-                "filename": "form",
-                "description": "The description of my file."
+                "filename": form_name,
+                "description": form_description
             }
             result = requests.post(url=url, headers=headers, data=post_data)
             return Response({"status": True, "msg": "File successfully attached"})
